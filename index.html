@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever Valentine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lavender: #e6e6fa;
+            --sunrise-gold: #ffdfba;
+            --romantic-pink: #ffb7c5;
+            --deep-plum: #4a304d;
+            --accent: #cc034d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            /* Animated Sunrise Gradient */
+            background: linear-gradient(45deg, #fdfcfb 0%, #e2d1c3 50%, #fef2e7 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 2rem 1rem;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Floating Hearts Background --- */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(165, 63, 101, 0.15);
+            font-size: 20px;
+            animation: floatUp 10s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Main Wrapper --- */
+        .valentine-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        /* --- Updated Bouquet Image --- */
+        .bouquet-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .bouquet-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 100px 100px 20px 20px;
+            box-shadow: 0 30px 60px rgba(74, 48, 77, 0.3);
+            border: 8px solid white;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: gentleSway 6s infinite ease-in-out;
+        }
+
+        .bouquet-container:hover img {
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        @keyframes gentleSway {
+            0%, 100% { transform: rotate(-1deg) translateY(0); }
+            50% { transform: rotate(1deg) translateY(-10px); }
+        }
+
+        /* --- Poem Card --- */
+        .poem-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .poem-text {
+            color: var(--deep-plum);
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .poem-line {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInBlur 1.2s forwards;
+        }
+
+        @keyframes fadeInBlur {
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .special-line {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-top: 1.5rem;
+            display: block;
+            text-shadow: 2px 2px 10px rgba(255, 183, 197, 0.5);
+        }
+
+        /* --- Footer Note --- */
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--deep-plum);
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .poem-card { padding: 2rem 1.5rem; }
+            .special-line { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-bg" id="heartContainer"></div>
+
+    <div class="valentine-wrapper">
+        <div class="bouquet-container">
+            <img src="flowers for a flower.png" 
+                 alt="roses">
+        </div>
+
+        <div class="poem-card">
+            <div class="poem-text">
+                <span class="poem-line" style="animation-delay: 0.5s;">I still don’t understand how I got this lucky,</span>
+                <span class="poem-line" style="animation-delay: 1.5s;">but I’m so glad you love me.</span>
+                <span class="poem-line" style="animation-delay: 2.5s;">even with my world class level of idiocy 😅.</span>
+                <span class="special-line" style="animation-delay: 5s;">I’m glad I get to see you smile</span>
+            </div>
+        </div>
+
+        <div class="signature">❤️ Be Mine Forever ❤️</div>
+    </div>
+
+    <script>
+        // Generating random floating hearts for that "wow" factor
+        const container = document.getElementById('heartContainer');
+        const heartIcons = ['❤', '🌸', '✨', '💜'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
